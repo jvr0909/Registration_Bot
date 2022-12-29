@@ -1,7 +1,1 @@
-
-
-# Don't ignore these
-*.yaml
 *.yml
-.gitattributes
-.gitignore
