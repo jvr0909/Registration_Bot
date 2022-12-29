@@ -32,7 +32,7 @@ def most_recent_notif():
     value = my_credentials["illinois_email"]
     _, data = my_mail.search(None, key, value)  #Search for emails with specific key and value
 
-    mail_id_list = data[0].split()  #IDs of all emails that we want to fetch 
+    mail_id_list = data[0].split()  #IDs of all emails that we want to fetch
     msgs = [] # empty list to capture all messages
     for num in mail_id_list:
         typ, data = my_mail.fetch(num, '(RFC822)') #RFC822 returns whole message (BODY fetches just body)
