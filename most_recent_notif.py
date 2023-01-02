@@ -1,8 +1,8 @@
 import email
 from datetime import datetime
 
-def most_recent_notif(messages):
-    print("Getting Most Recent Notification")
+def getMostRecentNotif(messages):
+    print("Getting Most Recent Email")
     #Iterate through messages and extract data into the msgs list
     
     #Now we have all messages, but with a lot of details
@@ -20,6 +20,7 @@ def most_recent_notif(messages):
 
     most_recent_notification = []
 
+    most_recent_notification = []
     for response_part in messages[-1]:
         if type(response_part) is tuple:
             my_msg=email.message_from_bytes((response_part[1]))
@@ -34,7 +35,8 @@ def most_recent_notif(messages):
                     course_subject = body[course_index:].split()[0]
                     #get the course number from course index to space
                     course_number = body[course_index:].split()[1]
+                    crn = body[course_index:].split()[3]
                     #convert time to datetime object
                     time = datetime.strptime(time, '%a, %d %b %Y %H:%M:%S %z')
-                    most_recent_notification = (course_subject, course_number, time)
+                    most_recent_notification = (course_subject, course_number, crn, time)
     return most_recent_notification

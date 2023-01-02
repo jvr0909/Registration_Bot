@@ -2,7 +2,7 @@ import yaml
 import imaplib
 
 
-def most_recent_notif():
+def get_emails():
     print("Logging in to gmail")
     with open("credentials.yml") as f:
         content = f.read()
@@ -10,13 +10,12 @@ def most_recent_notif():
     # from credentials.yml import user name and password
     my_credentials = yaml.load(content, Loader=yaml.FullLoader)
     #Load the user name and passwd from yaml file
-    user, password = my_credentials["gmail_user"], my_credentials["gmail_password"]
-    #URL for IMAP connection
+    gmail, gmail_password = my_credentials["gmail_user"], my_credentials["gmail_password"]    #URL for IMAP connection
     imap_url = 'imap.gmail.com'
     # Connection with GMAIL using SSL
     my_mail = imaplib.IMAP4_SSL(imap_url)
     try:
-        my_mail.login(user, password)
+        my_mail.login(gmail, gmail_password)
         print ("LOGIN SUCCESSFUL!!! ")
         # Select the Inbox to fetch messages
         my_mail.select('Inbox')

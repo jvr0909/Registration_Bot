@@ -1,14 +1,13 @@
-import gmail_login
-import most_recent_notif
-import check_last_10
+from gmail_login import get_emails
+from most_recent_notif import getMostRecentNotif
+from check_last_10 import withinLast10Minutes
+from registration import register
+def main(event, context):
+    messages = get_emails()
+    most_recent_notification = getMostRecentNotif(messages)
+    is_recent = withinLast10Minutes(most_recent_notification)
+    register(is_recent, most_recent_notification)
 
-def main():
-    messages = gmail_login.most_recent_notif()
-    most_recent_notification = most_recent_notif.most_recent_notif(messages)
-    is_recent = check_last_10.check_last_10(most_recent_notification)
-    print(is_recent)
-
-
-
-if __name__ == "__main__":
-    main()
+print("Starting main")
+main(None, None)
+print("Finished main")
